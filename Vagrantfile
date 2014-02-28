@@ -8,9 +8,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
-  config.vm.hostname = "wordpress"
-
-  config.vm.network :forwarded_port, guest: 22, host: 8080
+  config.vm.hostname = "grunt"
 
   config.vm.network :private_network, ip: "192.168.200.10"
 
@@ -19,6 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = "./cookbooks"
     chef.add_recipe "ubuntu"
     chef.add_recipe "apt"
     chef.add_recipe "git"
