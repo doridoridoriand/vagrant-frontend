@@ -23,12 +23,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "git"
     chef.add_recipe "vim"
     chef.add_recipe "zsh"
-    chef.add_recipe "nodejs"
     chef.add_recipe "apache2"
     chef.add_recipe "apache2::mod_rewrite"
     chef.add_recipe "apache2::mod_php5"
-    chef.add_recipe "ruby"
-
     chef.json = {
       apache: {
         default_site_enabled: true
@@ -36,4 +33,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     }
   end
   config.berkshelf.enabled = true
+  config.vm.provision :shell :path => install.sh
 end
