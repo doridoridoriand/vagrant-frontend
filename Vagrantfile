@@ -33,5 +33,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     }
   end
   config.berkshelf.enabled = true
-  config.vm.provision :shell :path => install.sh
+  config.vm.provision :shell, :path => "install.sh"
 end
