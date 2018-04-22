@@ -8,9 +8,12 @@ Vagrant.configure('2') do |config|
   config.vm.synced_folder "./workspace", "/home/vagrant/workspace"
 
   config.vm.provider 'virtualbox' do |vb|
-    vb.memory = 2048
+    vb.memory = 4096
     vb.cpus = 2
   end
+
+  # ほんとはAnsibleのみで完結するようにしたかったがVM側にPythonが入っていなかったので最低限入れる
+  config.vm.provision 'shell', path: './provision/init.sh'
 
   config.vm.provision 'ansible' do |ansible|
     ansible.playbook = './provision/main.yml'
