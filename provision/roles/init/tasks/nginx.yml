@@ -15,4 +15,4 @@
   apt: update_cache=yes
 
 - name : install nginx
-  apt : name=nginx state=latest
+  apt: name=nginx state=latest
