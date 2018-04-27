@@ -2,3 +2,4 @@
 
 - include: essentials.yml
 - include: package.yml
+- include: nginx.yml
