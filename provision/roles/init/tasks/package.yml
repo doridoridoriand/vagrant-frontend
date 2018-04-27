@@ -17,11 +17,3 @@
     - htop
     - tig
 
-
-- name: execute reboot
-  shell: "sudo reboot"
-  async: 1
-  pool: 0
-
-- name: wait for the guest goes to down
-  local_action: wait_for port=2222 state=stopped
