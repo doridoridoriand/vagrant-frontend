@@ -1,0 +1,29 @@
+---
+
+- name: install essential tools for install docker
+  apt: name={{item}}
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+- name: register pgp key
+  shell: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
+  when: docker_gpg | failed
+  become: true
+
+- name: check fingerprint
+  shell: "sudo apt-key fingerprint 0EBFCD88"
+  become: true
+
+- name: define lsb release
+  shell: "lsb_release -cs"
+  ignore_errors: true
+  register: lsb_release
+
+- name: set up the stable repository
+  shell: add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsb_release.stdout }} stable"
+
+- name: install docker
+  apt: name=docker-ce state=latest update_cache=yes

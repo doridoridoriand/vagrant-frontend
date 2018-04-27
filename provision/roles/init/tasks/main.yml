@@ -1,5 +1,5 @@
 ---
 
-- include: essentials.yml
 - include: package.yml
 - include: nginx.yml
+- include: docker.yml
