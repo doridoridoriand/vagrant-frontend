@@ -9,12 +9,11 @@
     - software-properties-common
 
 - name: register pgp key
-  shell: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
-  when: docker_gpg | failed
+  shell: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -"
   become: true
 
 - name: check fingerprint
-  shell: "sudo apt-key fingerprint 0EBFCD88"
+  shell: "apt-key fingerprint 0EBFCD88"
   become: true
 
 - name: define lsb release
