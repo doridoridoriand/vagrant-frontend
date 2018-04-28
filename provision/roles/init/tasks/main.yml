@@ -3,3 +3,4 @@
 - include: package.yml
 - include: nginx.yml
 - include: docker.yml
+- include: nodejs-with-package-manager.yml

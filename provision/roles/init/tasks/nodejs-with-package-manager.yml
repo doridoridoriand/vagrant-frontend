@@ -1,0 +1,23 @@
+---
+
+- name: install inbox nodejs & npm
+  apt: name={{item}}
+  with_items:
+    - nodejs
+    - npm
+
+- name: install n with global mode
+  npm: name=n state=present global=yes
+
+- name: check n package
+  shell: n --version
+  register: nocejs_version_manager_s_version
+
+- name: check nodejs LTS version with n
+  shell: "n --lts"
+  register: nodejs_lts_latest_version
+
+- debug: var=nodejs_lts_latest_version
+
+- name: install latest nodejs of LTS version with n as default nodejs version
+  shell: "n --lts"
