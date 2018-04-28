@@ -1,4 +1,5 @@
 # Local Development Environment for Frontend on Virtualbox
+(Although it is more acurate to say Web rather than Frontend)
 
 # Dependencies
 - Vagrant (>= 5.2)
