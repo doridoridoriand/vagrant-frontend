@@ -17,7 +17,9 @@
   shell: "n --lts"
   register: nodejs_lts_latest_version
 
-- debug: var=nodejs_lts_latest_version
-
 - name: install latest nodejs of LTS version with n as default nodejs version
-  shell: "n --lts"
+  shell: "n {{nodejs_lts_latest_version.stdout}}"
+
+- name: remove inbox nodejs
+  apt: name=nodejs
+       state=absent
