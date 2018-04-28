@@ -6,6 +6,12 @@
 - python (>= 3.5)
 - Ansible (>= 1.8.0)
 
+# What's the available on this vagrant?
+- Ubuntu 16.04 LTS
+- docker CE of latest version
+- nodejs of Latest LTS version
+- nginx of Latest mainline version
+
 # How to USE
 ```bash
 
