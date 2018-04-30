@@ -1,9 +1,9 @@
 ---
 
-- name : Add official nginx PGP key
+- name: Add official nginx PGP key
   apt_key: url=http://nginx.org/keys/nginx_signing.key state=present
 
-- name : Add official nginx repository
+- name: Add official nginx repository
   lineinfile: >
     dest=/etc/apt/sources.list
     line='{{item}} http://nginx.org/packages/ubuntu/ {{ansible_distribution_release}} nginx'
@@ -11,8 +11,8 @@
     - deb
     - deb-src
 
-- name : apt-get update
+- name: apt-get update
   apt: update_cache=yes
 
-- name : install nginx
+- name: install nginx
   apt: name=nginx state=latest
