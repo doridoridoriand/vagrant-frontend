@@ -23,3 +23,6 @@
 - name: remove inbox nodejs
   apt: name=nodejs
        state=absent
+
+- name: install essential nodejs library
+  npm: name=gtop state=latest global=yes
