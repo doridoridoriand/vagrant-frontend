@@ -26,3 +26,13 @@
 
 - name: install docker
   apt: name=docker-ce state=latest update_cache=yes
+
+- name: install docker-compose
+  shell: "curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose"
+  become: true
+
+- name: change docker-compose to executable
+  file: dest=/usr/local/bin/docker-compose
+        owner=ubuntu
+        group=ubuntu
+        mode=0777
