@@ -1,0 +1,11 @@
+---
+
+- name: copy ssh keys from host to guest
+  copy: src=~/.ssh/{{item}}
+        dest=/home/ubuntu/.ssh/{{item}}
+        owner=ubuntu
+        group=ubuntu
+        mode=0644
+  with_items:
+    - id_rsa
+    - id_rsa.pub
