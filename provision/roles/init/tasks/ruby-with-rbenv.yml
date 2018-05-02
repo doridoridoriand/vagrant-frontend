@@ -1,0 +1,20 @@
+---
+
+- name: Preparate install .rbenv and ruby-build
+  apt: name={{item}} state=present
+  with_items:
+    - git
+    - curl
+    - g++
+    - make
+    - zlib1g-dev
+    - libssl-dev
+    - libreadline-dev
+    - libyaml-dev
+    - libxml2-dev
+    - libxslt-dev
+    - sqlite3
+    - libsqlite3-dev
+
+- name: Update bashrc to able to load .rbenv and ruby-build
+  shell: 'export PATH="$HOME/.rbenv/bin:$PATH" >> ~/.bashrc'
