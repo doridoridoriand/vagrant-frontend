@@ -33,6 +33,6 @@
 
 - name: change docker-compose to executable
   file: dest=/usr/local/bin/docker-compose
-        owner=ubuntu
-        group=ubuntu
+        owner=vagrant
+        group=vagrant
         mode=0777
