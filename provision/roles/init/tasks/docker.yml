@@ -7,32 +7,37 @@
     - ca-certificates
     - curl
     - software-properties-common
+  become: yes
 
 - name: register pgp key
   shell: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -"
-  become: true
+  become: yes
 
 - name: check fingerprint
   shell: "apt-key fingerprint 0EBFCD88"
-  become: true
+  become: yes
 
 - name: define lsb release
   shell: "lsb_release -cs"
   ignore_errors: true
   register: lsb_release
+  become: yes
 
 - name: set up the stable repository
   shell: add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsb_release.stdout }} stable"
+  become: yes
 
 - name: install docker
   apt: name=docker-ce state=latest update_cache=yes
+  become: yes
 
 - name: install docker-compose
   shell: "curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose"
-  become: true
+  become: yes
 
 - name: change docker-compose to executable
   file: dest=/usr/local/bin/docker-compose
         owner=vagrant
         group=vagrant
         mode=0777
+  become: yes

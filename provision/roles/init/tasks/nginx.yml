@@ -2,6 +2,7 @@
 
 - name: Add official nginx PGP key
   apt_key: url=http://nginx.org/keys/nginx_signing.key state=present
+  become: yes
 
 - name: Add official nginx repository
   lineinfile: >
@@ -10,9 +11,12 @@
   with_items:
     - deb
     - deb-src
+  become: yes
 
 - name: apt-get update
   apt: update_cache=yes
+  become: yes
 
 - name: install nginx
   apt: name=nginx state=latest
+  become: yes

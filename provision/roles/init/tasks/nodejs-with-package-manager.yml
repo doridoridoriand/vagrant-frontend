@@ -5,24 +5,31 @@
   with_items:
     - nodejs
     - npm
+  become: yes
 
 - name: install n with global mode
   npm: name=n state=present global=yes
+  become: yes
 
 - name: check n package
   shell: n --version
   register: nocejs_version_manager_s_version
+  become: yes
 
 - name: check nodejs LTS version with n
   shell: "n --lts"
   register: nodejs_lts_latest_version
+  become: yes
 
 - name: install latest nodejs of LTS version with n as default nodejs version
   shell: "n {{nodejs_lts_latest_version.stdout}}"
+  become: yes
 
 - name: remove inbox nodejs
   apt: name=nodejs
        state=absent
+  become: yes
 
 - name: install essential nodejs library
   npm: name=gtop state=latest global=yes
+  become: yes
