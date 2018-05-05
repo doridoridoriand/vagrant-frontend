@@ -15,24 +15,37 @@
     - libxslt-dev
     - sqlite3
     - libsqlite3-dev
+  become: yes
 
 - name: Clone rbenv into local
   git:
     repo:  git://github.com/sstephenson/rbenv.git
     dest: /home/vagrant/.rbenv
-  register: rbenv_instlal_completed
 
-- name: Update bashrc to able to load .rbenv and ruby-build
-  shell: >
-    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-    echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-    exec $SHEL
+- name: change .rbenv folder owner from root to vagrant
+  file:
+    dest: /home/vagrant/.rbenv
+    owner: vagrant
+    group: vagrant
+    mode: 0755
 
 - name: Clone ruby-build into local
   git:
     repo: git://github.com/sstephenson/ruby-build.git
     dest: /home/vagrant/.rbenv/plugins/ruby-build
-  register: ruby-build_install_completed
+
+- name: change ruby-build folder owner from root to vagrant
+  file:
+    dest: /home/vagrant/.rbenv/plugins/ruby-build
+    owner: vagrant
+    group: vagrant
+    mode: 0755
+
+- name: Update bashrc to able to load .rbenv and ruby-build
+  shell: >
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> /home/vagrant/.bashrc && echo 'eval "$(rbenv init -)"' >> /home/vagrant/.bashrc && exec $SHEL
+  args:
+    creates: /var/lib/ansible/updated-bashrc-rbenv-and-ruby-build
 
 - name: check available ruby version
   shell: /home/vagrant/.rbenv/bin/rbenv install --list
