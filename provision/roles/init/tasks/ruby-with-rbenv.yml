@@ -20,7 +20,7 @@
   git:
     repo:  git://github.com/sstephenson/rbenv.git
     dest: /home/vagrant/.rbenv
-  ignore_errors: true
+  register: rbenv_instlal_completed
 
 - name: Update bashrc to able to load .rbenv and ruby-build
   shell: >
@@ -28,12 +28,11 @@
     echo 'eval "$(rbenv init -)"' >> ~/.bashrc
     exec $SHEL
 
-
 - name: Clone ruby-build into local
   git:
     repo: git://github.com/sstephenson/ruby-build.git
     dest: /home/vagrant/.rbenv/plugins/ruby-build
-  ignore_errors: true
+  register: ruby-build_install_completed
 
 - name: check available ruby version
   shell: /home/vagrant/.rbenv/bin/rbenv install --list
