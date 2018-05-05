@@ -51,4 +51,7 @@
   shell: /home/vagrant/.rbenv/bin/rbenv install --list
   register: available_ruby_versions
 
-- debug: var=available_ruby_versions
+- debug: var=available_ruby_versions.stdout_lines
+
+- name: install latest version of ruby
+  shell: rbenv install `rbenv install --list | tr -s '\n', ',' | python -c "import re; s = input(); v = re.findall('2.\d.\d', s); v = sorted(list(set(v))); v.pop(-1); v.pop(-1); v.pop(-1); print(v.pop(-1))"`
