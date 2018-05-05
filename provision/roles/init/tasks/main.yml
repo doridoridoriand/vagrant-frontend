@@ -4,4 +4,5 @@
 - include: nginx.yml
 - include: docker.yml
 - include: nodejs-with-package-manager.yml
+- include: ruby-with-rbenv.yml
 - include: tools.yml

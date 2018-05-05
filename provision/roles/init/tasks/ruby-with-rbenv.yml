@@ -16,5 +16,27 @@
     - sqlite3
     - libsqlite3-dev
 
+- name: Clone rbenv into local
+  git:
+    repo:  git://github.com/sstephenson/rbenv.git
+    dest: /home/vagrant/.rbenv
+  ignore_errors: true
+
 - name: Update bashrc to able to load .rbenv and ruby-build
-  shell: 'export PATH="$HOME/.rbenv/bin:$PATH" >> ~/.bashrc'
+  shell: >
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+    echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+    exec $SHEL
+
+
+- name: Clone ruby-build into local
+  git:
+    repo: git://github.com/sstephenson/ruby-build.git
+    dest: /home/vagrant/.rbenv/plugins/ruby-build
+  ignore_errors: true
+
+- name: check available ruby version
+  shell: /home/vagrant/.rbenv/bin/rbenv install --list
+  register: available_ruby_versions
+
+- debug: var=available_ruby_versions
