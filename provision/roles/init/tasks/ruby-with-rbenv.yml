@@ -22,7 +22,7 @@
     repo:  git://github.com/sstephenson/rbenv.git
     dest: /home/vagrant/.rbenv
 
-- name: change .rbenv folder owner from root to vagrant
+- name: Change .rbenv folder owner from root to vagrant
   file:
     dest: /home/vagrant/.rbenv
     owner: vagrant
@@ -34,7 +34,7 @@
     repo: git://github.com/sstephenson/ruby-build.git
     dest: /home/vagrant/.rbenv/plugins/ruby-build
 
-- name: change ruby-build folder owner from root to vagrant
+- name: Change ruby-build folder owner from root to vagrant
   file:
     dest: /home/vagrant/.rbenv/plugins/ruby-build
     owner: vagrant
@@ -47,11 +47,10 @@
   args:
     creates: /var/lib/ansible/updated-bashrc-rbenv-and-ruby-build
 
-- name: check available ruby version
-  shell: /home/vagrant/.rbenv/bin/rbenv install --list
-  register: available_ruby_versions
-
-- debug: var=available_ruby_versions.stdout_lines
-
-- name: install latest version of ruby
-  shell: rbenv install `rbenv install --list | tr -s '\n', ',' | python -c "import re; s = input(); v = re.findall('2.\d.\d', s); v = sorted(list(set(v))); v.pop(-1); v.pop(-1); v.pop(-1); print(v.pop(-1))"`
+- name: Deploy the script which checks latest version of ruby
+  copy:
+    src: usr/local/bin/check_latest_version_of_ruby
+    dest: /usr/local/bin/check_latest_version_of_ruby
+    owner: root
+    group: root
+    mode: 0755
