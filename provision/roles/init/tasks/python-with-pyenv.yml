@@ -1,0 +1,15 @@
+---
+
+- name: Install pyenv
+  shell: curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+  args:
+      creates: /var/lib/ansible/installed-pyenv
+
+- name: Update bashrc to able to call pyenv
+  shell: >
+      echo 'export PYENV_ROOT="$HOME/.pyenv"' >> /home/vagrant/.bashrc &&
+      echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> /home/vagrant/.bashrc
+  args:
+      creates: /var/lib/ansible/updated-bashrc-for-pyenv
+
+- name: Install latest version of python3
