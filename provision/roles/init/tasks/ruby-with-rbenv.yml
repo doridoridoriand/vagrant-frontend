@@ -65,5 +65,6 @@
   shell: /usr/local/bin/check_latest_version_of_ruby
   register: latest_ruby_version
 
-- name: Install latest version ruby
-  shell: rbenv install {{ latest_ruby_version.stdout }}
+  # not found エラーが出るが、原因がわからないので一旦コメントアウト
+  #- name: Install latest version ruby
+  #  shell: rbenv install {{ latest_ruby_version.stdout }}
