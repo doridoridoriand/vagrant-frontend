@@ -61,3 +61,9 @@
     mode: 0755
   become: yes
 
+- name: Check latest version of ruby
+  shell: /usr/local/bin/check_latest_version_of_ruby
+  register: latest_ruby_version
+
+- name: Install latest version ruby
+  shell: rbenv install {{ latest_ruby_version.stdout }}
