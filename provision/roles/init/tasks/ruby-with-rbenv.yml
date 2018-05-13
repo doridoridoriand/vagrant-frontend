@@ -47,6 +47,11 @@
   args:
     creates: /var/lib/ansible/updated-bashrc-rbenv-and-ruby-build
 
+- name: Install library feedparser
+  pip:
+    name: feedparser
+    state: present
+
 - name: Deploy the script which checks latest version of ruby
   copy:
     src: usr/local/bin/check_latest_version_of_ruby
@@ -54,3 +59,5 @@
     owner: root
     group: root
     mode: 0755
+  become: yes
+
