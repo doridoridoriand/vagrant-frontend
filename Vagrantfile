@@ -1,6 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+
 Vagrant.configure('2') do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.network :private_network, ip: "192.168.33.10"
@@ -8,8 +9,8 @@ Vagrant.configure('2') do |config|
   config.vm.synced_folder "./workspace", "/home/ubuntu/workspace"
 
   config.vm.provider 'virtualbox' do |vb|
-    vb.memory = 4096
-    vb.cpus = 2
+    vb.memory = 
+    vb.cpus = `cat /proc/cpuinfo | grep processor | wc -l`.to_i / 4
   end
 
   # ほんとはAnsibleのみで完結するようにしたかったがVM側にPythonが入っていなかったので最低限入れる
