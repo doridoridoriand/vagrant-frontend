@@ -12,4 +12,3 @@
   args:
       creates: /var/lib/ansible/updated-bashrc-for-pyenv
 
-- name: Install latest version of python3
