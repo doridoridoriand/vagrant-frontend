@@ -6,6 +6,7 @@
 - Virtualbox (>= 2.0.3)
 - python (>= 3.5)
 - Ansible (>= 1.8.0)
+- ubuntu/xenial64 (>=20180510.0.0)
 
 # What's the available on this vagrant?
 - Ubuntu 16.04 LTS
