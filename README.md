@@ -11,7 +11,9 @@
 # What's the available on this vagrant?
 - Ubuntu 16.04 LTS
 - docker CE of latest version
-- nodejs of Latest LTS version
+- Latest LTS version of nodejs
+- Latest version of ruby (But something wrong with ansible role. now it not work..)
+- Latest version of python3 (But something wrong with ansible role. now it not work..)
 - nginx of Latest mainline version
 
 # How to USE
