@@ -1,5 +1,10 @@
 ---
 
+- name: install library BeautifulSoup
+  pip:
+    name: bs4
+    state: present
+
 - name: Install pyenv
   shell: curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
   args:
@@ -8,7 +13,15 @@
 - name: Update bashrc to able to call pyenv
   shell: >
       echo 'export PYENV_ROOT="$HOME/.pyenv"' >> /home/vagrant/.bashrc &&
-      echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> /home/vagrant/.bashrc
+      echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> /home/vagrant/.bashrc &&
+      exec $SHELL
   args:
       creates: /var/lib/ansible/updated-bashrc-for-pyenv
 
+- name: Install python via pyenv
+  shell: /home/vagrant/.pyenv/bin/pyenv install 3.5.0
+
+- name: Subsequent process of pyenv
+  shell: >
+    /home/vagrant/.pyenv/bin/pyenv rehash && 
+    /home/vagrant/.pyenv/bin/pyenv global 3.5.0
