@@ -47,6 +47,14 @@
   args:
     creates: /var/lib/ansible/updated-bashrc-rbenv-and-ruby-build
 
+- name: Touch flagfile of previous task
+  file:
+    path: /var/lib/ansible/updated-bashrc-rbenv-and-ruby-build
+    state: touch
+    group: vagrant
+    owner: vagrant
+    mode: 0400
+
 - name: Install library feedparser
   pip:
     name: feedparser
