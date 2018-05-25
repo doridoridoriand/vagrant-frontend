@@ -12,16 +12,40 @@
 
 - name: Update bashrc to able to call pyenv
   shell: >
-      echo 'export PYENV_ROOT="$HOME/.pyenv"' >> /home/vagrant/.bashrc &&
-      echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> /home/vagrant/.bashrc &&
+      echo 'export PYENV_ROOT="$HOME/.pyenv"' >> /home/vagrant/.bash_profile &&
+      echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> /home/vagrant/.bash_profile &&
+      echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bash_profile &&
       exec $SHELL
   args:
       creates: /var/lib/ansible/updated-bashrc-for-pyenv
 
+- name: Touch flagfile of previous task
+  file:
+    path: /var/lib/ansible/updated-bashrc-for-pyenv
+    state: touch
+    group: vagrant
+    owner: vagrant
+    mode: 0400
+  become: yes
+
 - name: Install python via pyenv
   shell: /home/vagrant/.pyenv/bin/pyenv install 3.5.0
+  args:
+    creates: /var/lib/ansible/installed-latest-version-of-python
 
 - name: Subsequent process of pyenv
   shell: >
-    /home/vagrant/.pyenv/bin/pyenv rehash && 
+    /home/vagrant/.pyenv/bin/pyenv rehash &&
     /home/vagrant/.pyenv/bin/pyenv global 3.5.0
+  args:
+    creates: /var/lib/ansible/installed-latest-version-of-python
+
+- name: Touch flagfile of previous task
+  file:
+    path: /var/lib/ansible/installed-latest-version-of-python
+    state: touch
+    group: vagrant
+    owner: vagrant
+    mode: 400
+  become: yes
+
