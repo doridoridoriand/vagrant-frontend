@@ -54,6 +54,7 @@
     group: vagrant
     owner: vagrant
     mode: 0400
+  become: yes
 
 - name: Install library feedparser
   pip:
