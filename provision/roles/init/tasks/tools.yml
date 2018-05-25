@@ -10,3 +10,12 @@
   with_items:
     - id_rsa
     - id_rsa.pub
+
+- name: Make ansible working directory
+  file:
+    path: /var/lib/ansible
+    state: directory
+    owner: vagrant
+    group: vagrant
+    mode: 0755
+  become: yes
