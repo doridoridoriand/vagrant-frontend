@@ -1,0 +1,45 @@
+---
+
+#- name: Clone phpenv
+#  git:
+#    repo: git://github.com/phpenv/phpenv.git
+#    dest: /home/vagrant/.phpenv
+
+- name: Clone phpenv
+  shell: >
+    git clone git://github.com/phpenv/phpenv.git /home/vagrant/.phpenv
+  args:
+    creates: /var/lib/ansible/phpenv-already-cloned
+
+- name: Touch flagfile of previous task
+  file:
+    path: /var/lib/ansible/phpenv-already-cloned
+    state: touch
+    group: vagrant
+    owner: vagrant
+    mode: 0400
+  become: yes
+
+- name: Change .phpenv folder owner from root to vagrant
+  file:
+    dest: /home/vagrant/.phpenv
+    owner: vagrant
+    group: vagrant
+    mode: 0755
+
+- name: Update bashrc to able to call phpenv
+  shell: >
+    echo 'export PATH="$HOME/.phpenv/bin:$PATH"' >> ~/.bashrc &&
+    echo 'eval "$(phpenv init -)"' >> ~/.bashrc &&
+    exec $SHELL
+  args:
+    creates: /var/lib/ansible/updated-bashrc-for-phpenv
+
+- name: Touch flagfile of previous task
+  file:
+    path: /var/lib/ansible/updated-bashrc-for-phpenv
+    state: touch
+    group: vagrant
+    owner: vagrant
+    mode: 400
+  become: yes
