@@ -19,8 +19,9 @@
 
 - name: Clone rbenv into local
   git:
-    repo:  git://github.com/sstephenson/rbenv.git
+    repo: git://github.com/sstephenson/rbenv.git
     dest: /home/vagrant/.rbenv
+    accept_hostkey: yes
 
 - name: Change .rbenv folder owner from root to vagrant
   file:
@@ -33,6 +34,7 @@
   git:
     repo: git://github.com/sstephenson/ruby-build.git
     dest: /home/vagrant/.rbenv/plugins/ruby-build
+    accept_hostkey: yes
 
 - name: Change ruby-build folder owner from root to vagrant
   file:
@@ -74,6 +76,5 @@
   shell: /usr/local/bin/check_latest_version_of_ruby
   register: latest_ruby_version
 
-  # not found エラーが出るが、原因がわからないので一旦コメントアウト
-  #- name: Install latest version ruby
-  #  shell: rbenv install {{ latest_ruby_version.stdout }}
+- name: Install latest version ruby
+  shell: /home/vagrant/.rbenv/bin/rbenv install {{ latest_ruby_version.stdout }}
