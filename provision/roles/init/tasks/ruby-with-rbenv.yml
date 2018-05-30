@@ -78,3 +78,6 @@
 
 - name: Install latest version ruby
   shell: /home/vagrant/.rbenv/bin/rbenv install {{ latest_ruby_version.stdout }}
+
+- name: Set latest ruby version as default ruby version in the guest os
+  shell: /home/vagrant/.rbenv/bin/rbenv global {{ latest_ruby_version.stdout }}
