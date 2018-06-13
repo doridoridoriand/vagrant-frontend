@@ -1,0 +1,18 @@
+---
+
+# 公式で提供されているインストーラーが対話式だったのでちょっと考える必要あり
+#- name: Install latest version of Rust
+#  shell: "curl https://sh.rustup.rs -sSf | sh"
+#  args:
+#    creates: /var/lib/ansible/installed-latest-version-of-rust
+#
+#- name: Touch flag file of previous task
+#  file:
+#    path: /var/lib/ansible/installed-latest-version-of-rust
+#    state: touch
+#    owner: vagrant
+#    group: vagrant
+#    mode: 0400
+#  become: yes
+#
+#- name: 
