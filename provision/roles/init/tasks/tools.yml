@@ -19,3 +19,54 @@
     group: vagrant
     mode: 0755
   become: yes
+
+######################
+# Install h2load
+######################
+- name: Install essential package to build h2load
+  apt: name={{item}} state=latest
+  become: yes
+  with_items:
+    - g++
+    - make
+    - binutils
+    - autoconf
+    - automake
+    - autotools-dev
+    - libtool
+    - pkg-config
+    - zlib1g-dev
+    - libcunit1-dev
+    - libssl-dev
+    - libxml2-dev
+    - libev-dev
+    - libevent-dev
+    - libjansson-dev
+    - libc-ares-dev
+    - libjemalloc-dev
+    - cython
+    - python3-dev
+    - python-setuptools
+    - libjemalloc-dev
+    - libspdylay-dev
+
+- name: Clone nghttp2
+  git:
+    repo: https://github.com/nghttp2/nghttp2.git
+    dest: /home/vagrant/nghttp2
+    accept_hostkey: yes
+
+- name: Build nghttp2
+  shell: >
+    cd /home/vagrant/nghttp2 && autoreconf -i && automake && autoconf && ./configure --enable-app && make
+  args:
+    creates: /var/lib/ansible/nghttp2-build
+
+- name: Touch flagfile of previous task
+  file:
+    path: /var/lib/ansible/nghttp2-build
+    state: touch
+    group: vagrant
+    owner: vagrant
+    mode: 0400
+  become: yes
