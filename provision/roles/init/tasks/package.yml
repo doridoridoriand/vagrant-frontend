@@ -1,7 +1,7 @@
 ---
 
 # 必要そうなコマンド一式をインストールする
-- name: install essential packages from base repository
+- name: Install essential packages from base repository
   apt: name={{item}} state=latest
   become: yes
   with_items:
