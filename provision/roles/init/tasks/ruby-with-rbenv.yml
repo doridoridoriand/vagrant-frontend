@@ -78,6 +78,19 @@
 
 - name: Install latest version ruby
   shell: /home/vagrant/.rbenv/bin/rbenv install {{ latest_ruby_version.stdout }}
+  args:
+    creates: /var/lib/ansible/installed-latest-version-of-ruby
 
 - name: Set latest ruby version as default ruby version in the guest os
   shell: /home/vagrant/.rbenv/bin/rbenv global {{ latest_ruby_version.stdout }}
+  args:
+    creates: /var/lib/ansible/installed-latest-version-of-ruby
+
+- name: Touch flagfile of previous task
+  file:
+    path: /var/lib/ansible/installed-latest-version-of-ruby
+    state: touch
+    group: vagrant
+    owner: vagrant
+    mode: 0400
+  become: yes
