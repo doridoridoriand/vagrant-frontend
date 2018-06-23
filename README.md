@@ -6,14 +6,13 @@
 - Virtualbox (>= 2.0.3)
 - python (>= 3.5)
 - Ansible (>= 1.8.0)
-- ubuntu/xenial64 (>=20180510.0.0)
 
 # What's the available on this vagrant?
-- Ubuntu 16.04 LTS
+- Ubuntu 18.04 LTS (Bionic Beaver)
 - docker CE of latest version
-- Latest LTS version of nodejs
-- Latest version of ruby (But something wrong with ansible role. now it not work..)
-- Latest version of python3 (But something wrong with ansible role. now it not work..)
+- Latest LTS version of nodejs (At the moment 8.11.3 will be installed)
+- Latest version of ruby (At the moment 2.5.1 will be installed)
+- Latest version of python3 (At the moment 3.6.5 will be installed)
 - nginx of Latest mainline version
 
 # How to USE
