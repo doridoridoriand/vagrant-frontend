@@ -55,6 +55,7 @@
     repo: https://github.com/nghttp2/nghttp2.git
     dest: /home/vagrant/nghttp2
     accept_hostkey: yes
+  ignore_errors: true
 
 - name: Build nghttp2
   shell: >
