@@ -29,14 +29,14 @@
   become: yes
 
 - name: Install python via pyenv
-  shell: /home/vagrant/.pyenv/bin/pyenv install 3.6.5
+  shell: /home/vagrant/.pyenv/bin/pyenv install 3.6.6
   args:
     creates: /var/lib/ansible/installed-latest-version-of-python
 
 - name: Subsequent process of pyenv
   shell: >
     /home/vagrant/.pyenv/bin/pyenv rehash &&
-    /home/vagrant/.pyenv/bin/pyenv global 3.6.5
+    /home/vagrant/.pyenv/bin/pyenv global 3.6.6
   args:
     creates: /var/lib/ansible/installed-latest-version-of-python
 
