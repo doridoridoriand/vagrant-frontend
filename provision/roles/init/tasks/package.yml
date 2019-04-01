@@ -17,4 +17,5 @@
     - tmux
     - htop
     - tig
+    - jq
 
