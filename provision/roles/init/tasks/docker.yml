@@ -1,12 +1,8 @@
 ---
 
 - name: install essential tools for install docker
-  apt: name={{item}}
-  with_items:
-    - apt-transport-https
-    - ca-certificates
-    - curl
-    - software-properties-common
+  apt:
+    name: [apt-transport-https, ca-certificates, curl, software-properties-common]
   become: yes
 
 - name: register pgp key

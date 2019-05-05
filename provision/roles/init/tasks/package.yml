@@ -2,20 +2,7 @@
 
 # 必要そうなコマンド一式をインストールする
 - name: Install essential packages from base repository
-  apt: name={{item}} state=latest
+  apt:
+    name: [wget, lsof, man, tree, dstat, vim, zsh, openssl, git, tmux, htop, tig, jq]
+    state: latest
   become: yes
-  with_items:
-    - wget
-    - lsof
-    - man
-    - tree
-    - dstat
-    - vim
-    - zsh
-    - openssl
-    - git
-    - tmux
-    - htop
-    - tig
-    - jq
-
