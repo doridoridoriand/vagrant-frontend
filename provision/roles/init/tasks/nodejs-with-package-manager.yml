@@ -1,14 +1,15 @@
 ---
 
 - name: install inbox nodejs & npm
-  apt: name={{item}}
-  with_items:
-    - nodejs
-    - npm
+  apt:
+    name: [nodejs, npm]
   become: yes
 
 - name: install n with global mode
-  npm: name=n state=present global=yes
+  npm:
+    name: n
+    state: present
+    global: yes
   become: yes
 
 - name: check n package
@@ -26,10 +27,14 @@
   become: yes
 
 - name: remove inbox nodejs
-  apt: name=nodejs
-       state=absent
+  apt:
+    name: nodejs
+    state: absent
   become: yes
 
 - name: install essential nodejs library
-  npm: name=gtop state=latest global=yes
+  npm:
+    name: gtop
+    state: latest
+    global: yes
   become: yes
