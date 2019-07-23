@@ -50,3 +50,17 @@
     owner: vagrant
     mode: 0400
   become: yes
+
+######################
+# Install lazydocker
+######################
+- name: Download installer
+  become: yes
+  get_url:
+    url: https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh
+    dest: /usr/local/src/install_update_linux.sh
+    mode: 0755
+
+- name: execute install script
+  shell: bash /usr/local/src/install_update_linux.sh
+  become: yes
