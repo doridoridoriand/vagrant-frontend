@@ -2,7 +2,7 @@
 
 - name: install essential tools for install docker
   apt:
-    name: [apt-transport-https, ca-certificates, curl, software-properties-common]
+    name: [apt-transport-https, ca-certificates, curl, gnupg-agent, software-properties-common]
   become: yes
 
 - name: register pgp key
@@ -24,7 +24,10 @@
   become: yes
 
 - name: install docker
-  apt: name=docker-ce state=latest update_cache=yes
+  apt: 
+    name: docker.io
+    state: latest
+    update_cache: yes
   become: yes
 
 - name: install docker-compose
