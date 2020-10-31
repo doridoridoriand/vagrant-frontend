@@ -10,9 +10,9 @@
 # What's the available on this vagrant?
 - Ubuntu 18.04 LTS (Bionic)
 - docker CE of latest version
-- Latest LTS version of nodejs (At the moment 8.11.3 will be installed)
-- Latest version of ruby (At the moment 2.5.1 will be installed)
-- Latest version of python3 (At the moment 3.6.5 will be installed)
+- Latest LTS version of nodejs (At the moment 14.15.0 will be installed)
+- Latest version of ruby (At the moment 2.7.2 will be installed)
+- Latest version of python3 (At the moment 3.8.5 will be installed)
 - nginx of Latest mainline version
 
 # How to USE
