@@ -61,6 +61,7 @@
 - name: Install library feedparser
   pip:
     name: feedparser
+    executable: pip3
     state: present
 
 - name: Deploy the script which checks latest version of ruby
