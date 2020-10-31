@@ -7,3 +7,4 @@
 - include: nodejs-with-package-manager.yml
 - include: ruby-with-rbenv.yml
 - include: python-with-pyenv.yml
+- include: rust.yml
