@@ -1,11 +1,11 @@
 # Local Development Environment for Frontend on Virtualbox
 (Although it is more acurate to say Web rather than Frontend)
 
-# Dependencies
-- Vagrant (>= 5.2)
-- Virtualbox (>= 2.0.3)
-- python (>= 3.5)
-- Ansible (>= 1.8.0)
+# Requirements
+- Vagrant (>= 2.3.4)
+- Virtualbox (>= 7.0)
+- python (>= 3.7)
+- Ansible (>= 2.10.4)
 
 # What's the available on this vagrant?
 - Ubuntu 18.04 LTS (Bionic)
