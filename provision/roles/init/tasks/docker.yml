@@ -2,41 +2,22 @@
 
 - name: install essential tools for install docker
   apt:
-    name: [apt-transport-https, ca-certificates, curl, gnupg-agent, software-properties-common]
+    name: [apt-transport-https, ca-certificates, curl, gnupg-agent, software-properties-common, gnupg, lsb-release]
   become: yes
 
-- name: register pgp key
-  shell: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -"
+- name: register GPG key
+  shell: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg"
   become: yes
 
-- name: check fingerprint
-  shell: "apt-key fingerprint 0EBFCD88"
+- name: check permission of GPG
+  shell: "chmod a+r /etc/apt/keyrings/docker.gpg"
   become: yes
 
-- name: define lsb release
-  shell: "lsb_release -cs"
-  ignore_errors: true
-  register: lsb_release
-  become: yes
+- name: Install packages
+  shell: "echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null"
 
-- name: set up the stable repository
-  shell: add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsb_release.stdout }} stable"
-  become: yes
-
-- name: install docker
-  apt: 
-    name: docker.io
-    state: latest
+- name: Install docker CE and containerd
+  apt:
+    name: [docker-ce, docker-ce-cli, containerd.io]
     update_cache: yes
-  become: yes
-
-- name: install docker-compose
-  shell: "curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose"
-  become: yes
-
-- name: change docker-compose to executable
-  file: dest=/usr/local/bin/docker-compose
-        owner=vagrant
-        group=vagrant
-        mode=0777
   become: yes
