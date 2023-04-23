@@ -8,7 +8,7 @@
 - Ansible (>= 2.10.4)
 
 # What's the available on this vagrant?
-- Ubuntu 18.04 LTS (Bionic)
+- Ubuntu 22.04.2 LTS (Jammy)
 - docker CE of latest version
 - Latest LTS version of nodejs (At the moment 14.15.0 will be installed)
 - Latest version of ruby (At the moment 2.7.2 will be installed)
