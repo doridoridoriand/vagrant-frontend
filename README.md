@@ -17,7 +17,6 @@
 
 # How to USE
 ```bash
-
 $ git clone git@github.com:doridoridoriand/vagrant-frontend.git
 $ cd vagrant-frontend
 $ vagrant up
