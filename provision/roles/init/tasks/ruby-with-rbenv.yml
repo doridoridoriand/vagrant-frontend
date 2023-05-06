@@ -19,7 +19,7 @@
 
 - name: Clone rbenv into local
   git:
-    repo: git://github.com/sstephenson/rbenv.git
+    repo: git@github.com:sstephenson/rbenv.git
     dest: /home/vagrant/.rbenv
     accept_hostkey: yes
 
@@ -32,7 +32,7 @@
 
 - name: Clone ruby-build into local
   git:
-    repo: git://github.com/sstephenson/ruby-build.git
+    repo: git@github.com:sstephenson/ruby-build.git
     dest: /home/vagrant/.rbenv/plugins/ruby-build
     accept_hostkey: yes
 

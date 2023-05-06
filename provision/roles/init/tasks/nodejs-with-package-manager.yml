@@ -31,10 +31,3 @@
     name: nodejs
     state: absent
   become: yes
-
-- name: install essential nodejs library
-  npm:
-    name: gtop
-    state: latest
-    global: yes
-  become: yes
